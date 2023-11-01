@@ -1,14 +1,25 @@
+version: "3.8"
+
 services:
   mysql:
-    image: 'mysql:latest'
+    image: mysql:latest
+    container_name: mysql-docker
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql-data:/var/lib/mysql
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
-    ports:
-      - '3306'
+      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_DATABASE: loan
+      TZ: Asia/Seoul
+
   redis:
-    image: 'redis:latest'
+    image: redis:latest
+    container_name: redis-docker
     ports:
-      - '6379'
+      - "6379:6379"
+    volumes:
+      - ./redis-data:/data
+      - ./redis.conf:/usr/local/etc/redis/redis.conf
+    command: redis-server /usr/local/etc/redis/redis.conf
+    restart: always
