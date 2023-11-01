@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/loan?useSSL=false&serverTimezone=UTC
+    url: jdbc:mysql://mysql-docker:3306/loan?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
     username: root
     password: 1234
 
@@ -13,8 +13,10 @@ spring:
 
   data:
     redis:
-      host: localhost
+      host: redis-docker
       port: 6379
 
-
-
+  security:
+    user:
+      name: test
+      password: test
