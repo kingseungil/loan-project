@@ -1,14 +1,10 @@
 package com.zb.loanproject.domain;
 
-import com.zb.loanproject.domain.converter.ProductConverter;
-import com.zb.loanproject.type.ProductInfo;
-import jakarta.persistence.Convert;
+import com.zb.loanproject.aop.Encrypt;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -22,19 +18,18 @@ import lombok.Setter;
 @AllArgsConstructor
 @Builder
 @Entity
-@Table(name = "product")
-public class Product {
+@Table(name = "user")
+public class User {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
-    @ManyToOne
-    @JoinColumn(name = "org_id")
-    private Organization organization;
-    @Convert(converter = ProductConverter.class)
-    private ProductInfo productInfo;
-    private Double minInterest;
-    private Double maxInterest;
-
+    @Encrypt
+    private String userKey;
+    private String name;
+    @Encrypt
+    private String password;
+    @Encrypt
+    private String regNumber;
+    private Long incomeAmount;
 }
