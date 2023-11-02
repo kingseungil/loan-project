@@ -24,7 +24,6 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Encrypt
     private String userKey;
     private String name;
     @Encrypt
