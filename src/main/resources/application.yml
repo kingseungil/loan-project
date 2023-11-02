@@ -24,3 +24,7 @@ spring:
   encrypt:
     algorithm: AES
     key: 1234567890123456
+
+jwt:
+  secret:
+    key: dGVzdAo=
