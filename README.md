@@ -14,7 +14,7 @@
 
 ## ERD
 
-![](images/0b460f1b.png)
+![](images/db984658.png)
 
 ## 상품 관련 API
 
