@@ -1,9 +1,14 @@
 package com.zb.loanproject.service;
 
+import static com.zb.loanproject.type.ErrorCode.ORGANIZATION_NOT_FOUND;
+import static com.zb.loanproject.type.ErrorCode.PRODUCT_NOT_FOUND;
+import static com.zb.loanproject.type.ErrorCode.UNMATCHED_PRODUCT_NAME;
+
 import com.zb.loanproject.domain.Organization;
 import com.zb.loanproject.domain.Product;
 import com.zb.loanproject.dto.product.ProductDto;
 import com.zb.loanproject.dto.product.ProductInfo.ProductRequest;
+import com.zb.loanproject.exception.GlobalException;
 import com.zb.loanproject.repository.OrganizatonRespository;
 import com.zb.loanproject.repository.ProductRepository;
 import com.zb.loanproject.type.OrganizationEnum;
@@ -34,8 +39,7 @@ public class ProductService {
         OrganizationEnum organizationInfo = OrganizationEnum.ofCode(organizationCode);
 
         if (!productInfo.getName().equals(productName)) {
-            // TODO : custom exception 적용하기
-            throw new IllegalArgumentException("Invalid product name");
+            throw new GlobalException(UNMATCHED_PRODUCT_NAME);
         }
 
         Optional<Organization> optionalOrganization = organizatonRespository.findByOrgEnum(organizationInfo);
@@ -55,11 +59,11 @@ public class ProductService {
     @Cacheable(key = "#organizationName", value = "productInfo")
     public List<ProductDto> getProductInfo(String organizationName) {
         Organization organization = organizatonRespository.findByOrgEnum(OrganizationEnum.ofName(organizationName))
-                                                          // TODO : custom exception 적용하기
-                                                          .orElseThrow(IllegalArgumentException::new);
+                                                          .orElseThrow(
+                                                            () -> new GlobalException(ORGANIZATION_NOT_FOUND));
         List<Product> products = productRepository.findByOrganization(organization)
-                                                  // TODO : custom exception 적용하기
-                                                  .orElseThrow(IllegalArgumentException::new);
+                                                  .orElseThrow(
+                                                    () -> new GlobalException(PRODUCT_NOT_FOUND));
 
         return products.stream()
                        .map(ProductDto::convertToDto)

@@ -1,5 +1,9 @@
 package com.zb.loanproject.type;
 
+import static com.zb.loanproject.type.ErrorCode.UNMATCHED_ORGANIZATION_CODE;
+import static com.zb.loanproject.type.ErrorCode.UNMATCHED_ORGANIZATION_NAME;
+
+import com.zb.loanproject.exception.GlobalException;
 import java.util.Arrays;
 import lombok.Getter;
 
@@ -20,16 +24,14 @@ public enum OrganizationEnum {
         return Arrays.stream(OrganizationEnum.values())
                      .filter(p -> p.code.equals(code))
                      .findAny()
-                     // TODO : custom exception 적용하기
-                     .orElseThrow(IllegalArgumentException::new);
+                     .orElseThrow(() -> new GlobalException(UNMATCHED_ORGANIZATION_CODE));
     }
 
     public static OrganizationEnum ofName(String name) {
         return Arrays.stream(OrganizationEnum.values())
                      .filter(p -> p.name.equals(name))
                      .findAny()
-                     // TODO : custom exception 적용하기
-                     .orElseThrow(IllegalArgumentException::new);
+                     .orElseThrow(() -> new GlobalException(UNMATCHED_ORGANIZATION_NAME));
     }
 
     public static String codeOfName(String name) {
@@ -37,7 +39,6 @@ public enum OrganizationEnum {
                      .filter(p -> p.name.equals(name))
                      .findAny()
                      .map(OrganizationEnum::getCode)
-                     // TODO : custom exception 적용하기
-                     .orElseThrow(IllegalArgumentException::new);
+                     .orElseThrow(() -> new GlobalException(UNMATCHED_ORGANIZATION_NAME));
     }
 }

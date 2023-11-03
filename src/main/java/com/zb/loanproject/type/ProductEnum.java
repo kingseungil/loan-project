@@ -1,5 +1,9 @@
 package com.zb.loanproject.type;
 
+import static com.zb.loanproject.type.ErrorCode.UNMATCHED_PRODUCT_CODE;
+import static com.zb.loanproject.type.ErrorCode.UNMATCHED_PRODUCT_NAME;
+
+import com.zb.loanproject.exception.GlobalException;
 import java.util.Arrays;
 import lombok.Getter;
 
@@ -21,8 +25,7 @@ public enum ProductEnum {
         return Arrays.stream(ProductEnum.values())
                      .filter(p -> p.code.equals(code))
                      .findAny()
-                     // TODO : custom exception 적용하기
-                     .orElseThrow(IllegalArgumentException::new);
+                     .orElseThrow(() -> new GlobalException(UNMATCHED_PRODUCT_CODE));
     }
 
     public static String codeOfName(String name) {
@@ -30,7 +33,6 @@ public enum ProductEnum {
                      .filter(p -> p.name.equals(name))
                      .findAny()
                      .map(ProductEnum::getCode)
-                     // TODO : custom exception 적용하기
-                     .orElseThrow(IllegalArgumentException::new);
+                     .orElseThrow(() -> new GlobalException(UNMATCHED_PRODUCT_NAME));
     }
 }

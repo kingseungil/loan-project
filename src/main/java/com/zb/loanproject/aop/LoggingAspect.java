@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
 public class LoggingAspect {
 
     @Around("execution(* com.zb.loanproject.controller.*.*(..))")
-    public Object logAround(ProceedingJoinPoint joinPoint) {
+    public Object logAround(ProceedingJoinPoint joinPoint) throws Throwable {
         long startTime = System.currentTimeMillis();
         try {
             String className = joinPoint.getSignature().getDeclaringTypeName();
@@ -22,9 +22,9 @@ public class LoggingAspect {
             log.info("Method [{}.{}] called with arg [{}], took {}ms", className, methodName, joinPoint.getArgs(),
               endTime - startTime);
             return result;
-        } catch (Throwable e) {
-            log.error("aop log- error: {}", e.getMessage());
-            throw new RuntimeException(e);
+        } catch (Exception e) {
+            log.error("aop log - error: {}", e.getMessage());
+            throw e;
         }
     }
 }
