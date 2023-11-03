@@ -160,7 +160,7 @@
 
 ### 공통
 
-- [ ] 모든 Request 는 AOP를 통해 로그를 찍을 수 있도록 하기
+- [x] 모든 Request 는 AOP를 통해 로그를 찍을 수 있도록 하기
 - [x] 기관별, 상품별로 데이터를 관리할 수 있도록 하기
 - [x] 기관과 상품은 EnumClass 를 만들어주셔서 휴먼 에러 줄이기
 - [x] 데이터베이스 Entity 역시 EnumClass 를 사용하고, Converter 이용 하기
