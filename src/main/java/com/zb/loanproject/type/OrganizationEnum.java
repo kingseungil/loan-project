@@ -5,9 +5,8 @@ import lombok.Getter;
 
 @Getter
 public enum OrganizationEnum {
-    ORG1("Organization1", "00001"),
-    ORG2("Organization2", "00002"),
-    ORG3("Organization3", "00003");
+    KAKAO("kakaoBank", "00001"),
+    TOSS("tossBank", "00002");
 
     private final String name;
     private final String code;

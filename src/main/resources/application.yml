@@ -28,3 +28,7 @@ spring:
 jwt:
   secret:
     key: dGVzdAo=
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html

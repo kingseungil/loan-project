@@ -7,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 @Getter
 @Setter
 @SuperBuilder
-public class ApiResponse {
+public class ApiDefaultResponse {
 
     private String responseCode;
     private String responseMessage;

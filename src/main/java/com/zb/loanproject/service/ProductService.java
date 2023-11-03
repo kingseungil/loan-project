@@ -3,7 +3,7 @@ package com.zb.loanproject.service;
 import com.zb.loanproject.domain.Organization;
 import com.zb.loanproject.domain.Product;
 import com.zb.loanproject.dto.product.ProductDto;
-import com.zb.loanproject.dto.product.ProductInfo.Request;
+import com.zb.loanproject.dto.product.ProductInfo.ProductRequest;
 import com.zb.loanproject.repository.OrganizatonRespository;
 import com.zb.loanproject.repository.ProductRepository;
 import com.zb.loanproject.type.OrganizationEnum;
@@ -23,12 +23,12 @@ public class ProductService {
     private final OrganizatonRespository organizatonRespository;
 
     @CacheEvict(value = "productInfo", allEntries = true)
-    public void getProductInformation(Request request) {
-        String organizationCode = request.getOrganizationCode();
-        String productCode = request.getProductCode();
-        double productMaximumInterest = request.getProductMaximumInterest();
-        double productMinimumInterest = request.getProductMinimumInterest();
-        String productName = request.getProductName();
+    public void getProductInformation(ProductRequest productRequest) {
+        String organizationCode = productRequest.getOrganizationCode();
+        String productCode = productRequest.getProductCode();
+        double productMaximumInterest = productRequest.getProductMaximumInterest();
+        double productMinimumInterest = productRequest.getProductMinimumInterest();
+        String productName = productRequest.getProductName();
 
         ProductEnum productInfo = ProductEnum.ofCode(productCode);
         OrganizationEnum organizationInfo = OrganizationEnum.ofCode(organizationCode);

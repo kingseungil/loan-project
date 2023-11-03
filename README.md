@@ -164,7 +164,7 @@
 - [x] 기관별, 상품별로 데이터를 관리할 수 있도록 하기
 - [x] 기관과 상품은 EnumClass 를 만들어주셔서 휴먼 에러 줄이기
 - [x] 데이터베이스 Entity 역시 EnumClass 를 사용하고, Converter 이용 하기
-- [ ] 모든 API 에 Swagger 를 작성하기
+- [x] 모든 API 에 Swagger 를 작성하기 ([주소](http://localhost:8080/swagger-ui/index.html))
 - [ ] API 내에서 ExceptionHandling 을 ControllerAdvice 를 통해 처리하기
 - [x] Docker 이미지를 만들기
 - [x] Docker-Compose 를 사용해서 도커 이미지를 띄우기
