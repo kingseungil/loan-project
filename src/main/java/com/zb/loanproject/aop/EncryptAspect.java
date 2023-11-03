@@ -22,12 +22,12 @@ public class EncryptAspect {
     private final EncryptService encryptService;
 
     // save()
-    @Pointcut("execution(* com.zb.loanproject.repository.*.save(..))")
+    @Pointcut("execution(* com.zb.loanproject.repository.UserRepository.save(..))")
     public void save() {
     }
 
     // find()
-    @Pointcut("execution(* com.zb.loanproject.repository.*.find*(..))")
+    @Pointcut("execution(* com.zb.loanproject.repository.UserRepository.find*(..))")
     public void find() {
     }
 
