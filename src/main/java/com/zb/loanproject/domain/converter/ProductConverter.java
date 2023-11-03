@@ -1,14 +1,14 @@
 package com.zb.loanproject.domain.converter;
 
-import com.zb.loanproject.type.ProductInfo;
+import com.zb.loanproject.type.ProductEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class ProductConverter implements AttributeConverter<ProductInfo, String> {
+public class ProductConverter implements AttributeConverter<ProductEnum, String> {
 
     @Override
-    public String convertToDatabaseColumn(ProductInfo attribute) {
+    public String convertToDatabaseColumn(ProductEnum attribute) {
         if (attribute == null) {
             return null;
         }
@@ -16,10 +16,10 @@ public class ProductConverter implements AttributeConverter<ProductInfo, String>
     }
 
     @Override
-    public ProductInfo convertToEntityAttribute(String dbData) {
+    public ProductEnum convertToEntityAttribute(String dbData) {
         if (dbData == null) {
             return null;
         }
-        return ProductInfo.ofCode(dbData);
+        return ProductEnum.ofCode(dbData);
     }
 }

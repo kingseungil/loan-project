@@ -1,14 +1,14 @@
 package com.zb.loanproject.domain.converter;
 
-import com.zb.loanproject.type.OrganizationInfo;
+import com.zb.loanproject.type.OrganizationEnum;
 import jakarta.persistence.AttributeConverter;
 import jakarta.persistence.Converter;
 
 @Converter
-public class OrganizationConverter implements AttributeConverter<OrganizationInfo, String> {
+public class OrganizationConverter implements AttributeConverter<OrganizationEnum, String> {
 
     @Override
-    public String convertToDatabaseColumn(OrganizationInfo attribute) {
+    public String convertToDatabaseColumn(OrganizationEnum attribute) {
         if (attribute == null) {
             return null;
         }
@@ -16,10 +16,10 @@ public class OrganizationConverter implements AttributeConverter<OrganizationInf
     }
 
     @Override
-    public OrganizationInfo convertToEntityAttribute(String dbData) {
+    public OrganizationEnum convertToEntityAttribute(String dbData) {
         if (dbData == null) {
             return null;
         }
-        return OrganizationInfo.ofCode(dbData);
+        return OrganizationEnum.ofCode(dbData);
     }
 }
