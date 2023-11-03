@@ -11,6 +11,8 @@ import com.zb.loanproject.type.ProductEnum;
 import java.util.List;
 import java.util.Optional;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,6 +22,7 @@ public class ProductService {
     private final ProductRepository productRepository;
     private final OrganizatonRespository organizatonRespository;
 
+    @CacheEvict(value = "productInfo", allEntries = true)
     public void getProductInformation(Request request) {
         String organizationCode = request.getOrganizationCode();
         String productCode = request.getProductCode();
@@ -49,6 +52,7 @@ public class ProductService {
 
     }
 
+    @Cacheable(key = "#organizationName", value = "productInfo")
     public List<ProductDto> getProductInfo(String organizationName) {
         Organization organization = organizatonRespository.findByOrgEnum(OrganizationEnum.ofName(organizationName))
                                                           // TODO : custom exception 적용하기
