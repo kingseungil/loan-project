@@ -1,7 +1,8 @@
 package com.zb.loanproject.domain;
 
 import com.zb.loanproject.domain.converter.ProductConverter;
-import com.zb.loanproject.type.ProductInfo;
+import com.zb.loanproject.type.ProductEnum;
+import jakarta.persistence.Column;
 import jakarta.persistence.Convert;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,8 +33,9 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "org_id")
     private Organization organization;
+    @Column(unique = true)
     @Convert(converter = ProductConverter.class)
-    private ProductInfo productInfo;
+    private ProductEnum productEnum;
     private Double minInterest;
     private Double maxInterest;
 
