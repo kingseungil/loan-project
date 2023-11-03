@@ -165,7 +165,7 @@
 - [x] 기관과 상품은 EnumClass 를 만들어주셔서 휴먼 에러 줄이기
 - [x] 데이터베이스 Entity 역시 EnumClass 를 사용하고, Converter 이용 하기
 - [x] 모든 API 에 Swagger 를 작성하기 ([주소](http://localhost:8080/swagger-ui/index.html))
-- [ ] API 내에서 ExceptionHandling 을 ControllerAdvice 를 통해 처리하기
+- [x] API 내에서 ExceptionHandling 을 ControllerAdvice 를 통해 처리하기
 - [x] Docker 이미지를 만들기
 - [x] Docker-Compose 를 사용해서 도커 이미지를 띄우기
 - [ ] 여러 개의 Spring Boot 서버를 띄우고 NginX와 연결하기
