@@ -1,9 +1,11 @@
-package com.zb.loanproject.dto;
+package com.zb.loanproject.dto.user;
 
+import com.zb.loanproject.dto.ApiResponse;
+import java.util.Map;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.SuperBuilder;
 
 public class UserInfo {
 
@@ -17,11 +19,9 @@ public class UserInfo {
 
     @Getter
     @Setter
-    @NoArgsConstructor
-    public static class UserInfoResponse extends UserResponseData {
+    @SuperBuilder
+    public static class Response extends ApiResponse {
 
-        public UserInfoResponse(String userKey) {
-            super.setUserKey(userKey);
-        }
+        private Map<String, String> data;
     }
 }

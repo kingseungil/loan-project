@@ -1,10 +1,11 @@
 package com.zb.loanproject.controller;
 
-import com.zb.loanproject.dto.PrivateUserInfo;
-import com.zb.loanproject.dto.ResponseDTO;
-import com.zb.loanproject.dto.UserInfo;
-import com.zb.loanproject.dto.UserInfo.UserInfoResponse;
+import com.zb.loanproject.dto.ApiResponse;
+import com.zb.loanproject.dto.user.PrivateUserInfoDto;
+import com.zb.loanproject.dto.user.UserInfo;
+import com.zb.loanproject.dto.user.UserInfo.Request;
 import com.zb.loanproject.service.UserService;
+import java.util.Map;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,26 +23,29 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping("/information")
-    public ResponseEntity<ResponseDTO> getUserInformation(
-      @RequestBody UserInfo.Request request
+    public ResponseEntity<ApiResponse> getUserInformation(
+      @RequestBody Request request
     ) {
-        UserInfoResponse userKey = userService.getUserInformation(request);
+        String userKey = userService.getUserInformation(request);
+        Map<String, String> responseData = Map.of("userKey", userKey);
 
-        return ResponseEntity.ok(ResponseDTO.builder()
-                                            .data(userKey)
-                                            .responseCode("201")
-                                            .responseMessage("성공")
-                                            .build());
+        return ResponseEntity.status(201).body(UserInfo.Response.builder()
+                                                                .data(responseData)
+                                                                .responseCode("201")
+                                                                .responseMessage("성공")
+                                                                .build());
     }
 
     @GetMapping("/private-info/{userKey}")
-    public ResponseEntity<ResponseDTO> getUserPrivateInformation(@PathVariable String userKey) {
-        PrivateUserInfo privateUserInfo = userService.getPrivateInformation(userKey);
+    public ResponseEntity<ApiResponse> getUserPrivateInformation(@PathVariable String userKey) {
+        PrivateUserInfoDto privateUserInfo = userService.getPrivateInformation(userKey);
+        Map<String, String> responseData = Map.of("userKey", privateUserInfo.getUserKey(),
+          "userRegistrationNumber", privateUserInfo.getUserRegistrationNumber());
 
-        return ResponseEntity.ok(ResponseDTO.builder()
-                                            .data(privateUserInfo)
-                                            .responseCode("201")
-                                            .responseMessage("성공")
-                                            .build());
+        return ResponseEntity.ok(UserInfo.Response.builder()
+                                                  .data(responseData)
+                                                  .responseCode("200")
+                                                  .responseMessage("성공")
+                                                  .build());
     }
 }

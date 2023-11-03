@@ -1,9 +1,8 @@
 package com.zb.loanproject.service;
 
 import com.zb.loanproject.domain.User;
-import com.zb.loanproject.dto.PrivateUserInfo;
-import com.zb.loanproject.dto.UserInfo.Request;
-import com.zb.loanproject.dto.UserInfo.UserInfoResponse;
+import com.zb.loanproject.dto.user.PrivateUserInfoDto;
+import com.zb.loanproject.dto.user.UserInfo.Request;
 import com.zb.loanproject.repository.UserRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -15,7 +14,7 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public UserInfoResponse getUserInformation(Request request) {
+    public String getUserInformation(Request request) {
         String userName = request.getUserName();
         String userRegistrationNumber = request.getUserRegistrationNumber();
         Long userIncomeAmount = request.getUserIncomeAmount();
@@ -32,13 +31,13 @@ public class UserService {
         userEntity.setUserKey(userKey);
 
         userRepository.save(userEntity);
-        return new UserInfoResponse(userKey);
+        return userKey;
     }
 
-    public PrivateUserInfo getPrivateInformation(String userKey) {
+    public PrivateUserInfoDto getPrivateInformation(String userKey) {
         User userEntity = userRepository.findByUserKey(userKey)
                                         .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
 
-        return new PrivateUserInfo(userEntity.getUserKey(), userEntity.getRegNumber());
+        return new PrivateUserInfoDto(userEntity.getUserKey(), userEntity.getRegNumber());
     }
 }
