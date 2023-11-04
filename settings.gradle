@@ -1,1 +1,4 @@
 rootProject.name = 'loan-project'
+include 'module-user'
+include 'module-organization'
+include 'module-core'

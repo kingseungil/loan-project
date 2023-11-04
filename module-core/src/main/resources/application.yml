@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/loan?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: root
+    password: 1234
+
+  jpa:
+    database: mysql
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  encrypt:
+    algorithm: AES
+    key: 1234567890123456
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
