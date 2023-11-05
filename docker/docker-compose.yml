@@ -12,8 +12,6 @@ services:
   module-user:
     image: kingseungil/module-user:1.0.0
     container_name: module-user
-    env_file:
-      - env.properties
     expose:
       - "8080"
     depends_on:
@@ -26,8 +24,6 @@ services:
   module-organization:
     image: kingseungil/module-organization:1.0.0
     container_name: module-organization
-    env_file:
-      - env.properties
     expose:
       - "8080"
     depends_on:
