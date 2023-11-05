@@ -24,12 +24,17 @@
 
 > Mac OS 기준
 
+`env 설정`
+
 1. /docker 폴더안에 env.properties 파일 생성
     - env-example.properties 파일 참고
 2. /docker 폴더안에 .env 파일 생성
     - .env-example 파일 참고
 3. module-core/src/main/resources/profiles 폴더안에 env.properties 파일 생성
     - env-example.properties 파일 참고
+
+`빌드 및 실행`
+
 4. /docker/build-images.sh 실행 (Springboot build & Docker Image build)
     - HUB_USER 설정 필요 (Docker Hub 계정)
 5. /docker 폴더안에 docker-compose.yml 파일로 컨테이너 실행

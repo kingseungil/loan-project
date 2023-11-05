@@ -1,7 +1,11 @@
 #!/bin/bash
 
+if [[ -f .env ]]; then
+  export $(cat .env | grep -v '^#' | xargs)
+fi
+
 VERSION="1.0.0"
-HUB_USER="kingseungil"
+HUB_USER="$MY_HUB_ID"
 
 cd ..
 
