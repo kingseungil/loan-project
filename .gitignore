@@ -39,3 +39,6 @@ out/
 redis-data
 mysql-data
 logs
+
+# env.properties
+**/env.properties
