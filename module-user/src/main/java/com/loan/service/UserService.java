@@ -1,8 +1,11 @@
 package com.loan.service;
 
+import static com.loan.core.type.ErrorCode.ORGANIZATION_NOT_FOUND;
+
 import com.loan.core.dto.user.PrivateUserInfoDto;
 import com.loan.core.dto.user.UserInfo.UserRequest;
 import com.loan.core.entity.User;
+import com.loan.core.exception.GlobalException;
 import com.loan.core.repository.UserRepository;
 import java.util.UUID;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +39,7 @@ public class UserService {
 
     public PrivateUserInfoDto getPrivateInformation(String userKey) {
         User userEntity = userRepository.findByUserKey(userKey)
-                                        .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+                                        .orElseThrow(() -> new GlobalException(ORGANIZATION_NOT_FOUND));
 
         return new PrivateUserInfoDto(userEntity.getUserKey(), userEntity.getRegNumber());
     }
