@@ -5,16 +5,29 @@
 ## Tech Stack
 
 - Java 17
+- Gradle
 - Spring Boot 3.1.5
 - Spring Data JPA
 - Spring Security
 - MySQL
 - Redis
 - Docker
+- NginX
 
 ## ERD
 
 ![](images/db984658.png)
+
+## 프로젝트 실행 방법
+
+1. /docker 폴더안에 env.properties 파일 생성
+    - env-example.properties 파일 참고
+2. module-core/src/main/resources/profiles 폴더안에 env.properties 파일 생성
+    - env-example.properties 파일 참고
+3. /docker/build-images.sh 실행 (Springboot build & Docker Image build)
+    - HUB_USER 설정 필요 (Docker Hub 계정)
+4. /docker 폴더안에 docker-compose.yml 파일로 컨테이너 실행
+    - docker-compose up --build -d
 
 ## 상품 관련 API
 
@@ -98,41 +111,6 @@
       }
       ```
 
-## 인증 관련 API
-
-1. POST `/auth/signup`
-    - 회원가입
-    - Request Body
-      ```json
-      {
-         "userId" : "test",
-         "userPassword" : "test",
-         "userName" : "name",
-         "userRegistrationNumber" : "000000-0000000"
-      }
-      ```
-    - Response
-      ```json
-      {
-          "responseCode" : "00",
-          "responseMessage" : "success"
-      }
-      ```
-
-2. POST `/auth/signin`
-    - 로그인
-    - Request Body
-      ```json
-      {
-          "userId" : "test",
-          "userPassword" : "test"
-      }
-      ```
-    - Response
-      ```text
-      token
-      ```
-
 ## 요구 사항
 
 ### 상품 정보 관련 API 개발
@@ -164,8 +142,8 @@
 - [x] 기관별, 상품별로 데이터를 관리할 수 있도록 하기
 - [x] 기관과 상품은 EnumClass 를 만들어주셔서 휴먼 에러 줄이기
 - [x] 데이터베이스 Entity 역시 EnumClass 를 사용하고, Converter 이용 하기
-- [x] 모든 API 에 Swagger 를 작성하기 ([주소](http://localhost:8080/swagger-ui/index.html))
+- [x] 모든 API 에 Swagger 를 작성하기 ([user api](http://127.0.0.1/user-api), [product api](http://127.0.0.1/organization-api))
 - [x] API 내에서 ExceptionHandling 을 ControllerAdvice 를 통해 처리하기
 - [x] Docker 이미지를 만들기
 - [x] Docker-Compose 를 사용해서 도커 이미지를 띄우기
-- [ ] 여러 개의 Spring Boot 서버를 띄우고 NginX와 연결하기
+- [x] 여러 개의 Spring Boot 서버를 띄우고 NginX와 연결하기

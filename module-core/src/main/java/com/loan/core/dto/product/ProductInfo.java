@@ -23,7 +23,7 @@ public class ProductInfo {
         private double productMaximumInterest;
         @Schema(example = "1.1")
         private double productMinimumInterest;
-        @Schema(example = "kakaoBank")
+        @Schema(example = "Service1")
         private String productName;
     }
 
