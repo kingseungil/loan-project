@@ -10,9 +10,10 @@ test {
 }
 
 bootJar {
-    enabled = false
+    enabled = true
+    mainClass = 'com.loan.OrganizationApplication'
 }
 
 jar {
-    enabled = true
+    enabled = false
 }

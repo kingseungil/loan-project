@@ -10,9 +10,9 @@ test {
 }
 
 bootJar {
-    enabled = false
-}
-
-jar {
     enabled = true
+    mainClass = 'com.loan.UserApplication'
+}
+jar {
+    enabled = false
 }
