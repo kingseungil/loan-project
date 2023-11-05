@@ -2,7 +2,7 @@ version: "3.8"
 
 services:
   module-core:
-    image: kingseungil/module-core:1.0.0
+    image: ${MY_HUB_ID}/module-core:1.0.0
     container_name: module-core
     env_file:
       - env.properties
@@ -10,7 +10,7 @@ services:
       - loan-network
 
   module-user:
-    image: kingseungil/module-user:1.0.0
+    image: ${MY_HUB_ID}/module-user:1.0.0
     container_name: module-user
     expose:
       - "8080"
@@ -22,7 +22,7 @@ services:
       - loan-network
 
   module-organization:
-    image: kingseungil/module-organization:1.0.0
+    image: ${MY_HUB_ID}/module-organization:1.0.0
     container_name: module-organization
     expose:
       - "8080"

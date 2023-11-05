@@ -20,13 +20,17 @@
 
 ## 프로젝트 실행 방법
 
+> Mac OS 기준
+
 1. /docker 폴더안에 env.properties 파일 생성
     - env-example.properties 파일 참고
-2. module-core/src/main/resources/profiles 폴더안에 env.properties 파일 생성
+2. /docker 폴더안에 .env 파일 생성
+    - .env-example 파일 참고
+3. module-core/src/main/resources/profiles 폴더안에 env.properties 파일 생성
     - env-example.properties 파일 참고
-3. /docker/build-images.sh 실행 (Springboot build & Docker Image build)
+4. /docker/build-images.sh 실행 (Springboot build & Docker Image build)
     - HUB_USER 설정 필요 (Docker Hub 계정)
-4. /docker 폴더안에 docker-compose.yml 파일로 컨테이너 실행
+5. /docker 폴더안에 docker-compose.yml 파일로 컨테이너 실행
     - docker-compose up --build -d
 
 ## 상품 관련 API
