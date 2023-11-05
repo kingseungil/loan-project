@@ -1,6 +1,8 @@
 # 미니 대출 서비스
 
 > 스프링부트 (3버전) 연습 겸 하는 프로젝트
+>
+> 비즈니스 로직보다는, Springboot 기능들 (AOP 등), Docker, NginX 등을 연습하기 위함
 
 ## Tech Stack
 
